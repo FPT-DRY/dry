@@ -1,0 +1,19 @@
+{
+    "general": {
+        "lang": {
+          "vi": {
+            "abbreviation": "V",
+            "name": "Vietnamese"
+          },
+          "en": {
+            "abbreviation": "E",
+            "name": "English"
+          }
+        }
+      },
+      "components": {
+        "appBar": {
+          "home": "Home"
+        }
+      }
+}

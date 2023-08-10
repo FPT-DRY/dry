@@ -1,0 +1,21 @@
+{
+    "general": {
+        "lang": {
+          "vi": {
+            "abbreviation": "V",
+            "name": "Tiếng Việt"
+          },
+          "en": {
+            "abbreviation": "E",
+            "name": "Tiếng Anh"
+          }
+        }
+      },
+      "components": {
+        "appBar": {
+          "home": "Trang Chủ",
+          "about-me": "Trang Cá Nhân",
+          "gallery": "Bộ Sưu Tập"
+        }
+      }
+}
