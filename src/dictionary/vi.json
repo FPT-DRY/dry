@@ -13,9 +13,7 @@
       },
       "components": {
         "appBar": {
-          "home": "Trang Chủ",
-          "about-me": "Trang Cá Nhân",
-          "gallery": "Bộ Sưu Tập"
+          "home": "Trang Chủ"
         }
       }
 }
