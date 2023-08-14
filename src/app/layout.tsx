@@ -1,3 +1,10 @@
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -15,8 +22,8 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang='en'>
-      {children}
-    </html>
+    <ClerkProvider>
+      <html lang='en'>{children}</html>
+    </ClerkProvider>
   );
 }
