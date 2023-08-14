@@ -13,7 +13,7 @@ const authOptions: AuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'jwt',
+    strategy: 'database', // rely on jwt expire time or session record in database
   },
   callbacks: {
     /* define callback options here */

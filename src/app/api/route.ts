@@ -1,5 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  return NextResponse.json({ message: "Hello World" }, { status: 200 });
+  return NextResponse.json(
+    {
+      database: {
+        url: process.env.DATABASE_URL,
+      },
+    },
+    { status: 200 }
+  );
 }

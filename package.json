@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "docker:start": "docker compose up --build -d",
+    "predev": "yarn run docker:start",
     "dev": "next dev",
     "build": "next build",
+    "prestart": "yarn run docker:start",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,6 +16,7 @@
     "@prisma/client": "5.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "eslint": "8.46.0",
@@ -31,6 +35,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/lodash": "^4.14.197",
     "@types/node": "^20.4.9",
     "@types/react": "18.2.20",
