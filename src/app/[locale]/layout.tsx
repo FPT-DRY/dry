@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
-import Providers from '~/components/AppProviders';
+import Providers from '@components/providers';
 
-import '~/app/globals.scss';
+import '@stylesheets/global.scss';
 
 type LayoutProps = {
   children: React.ReactNode;

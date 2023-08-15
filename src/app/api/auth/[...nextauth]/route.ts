@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import { getToken } from 'next-auth/jwt';
-
-import authOptions from '~/lib/auth';
+import authOptions from '@lib/auth';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const token = getToken({ req, cookieName: 'dry-jwt-auth' });
