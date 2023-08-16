@@ -1,0 +1,23 @@
+@import '@stylesheets/lib/library';
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  background-color: $navbar-bg-color;
+  color: $navbar-text-color;
+
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+
+    & > * {
+      margin: 5px 10px;
+    }
+  }
+}
