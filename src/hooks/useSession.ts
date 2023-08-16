@@ -1,9 +1,12 @@
 import { fetcher } from '@lib/fetch';
-import prisma from '@lib/prisma';
 import useSWR from 'swr';
 
 type SessionData = {
-  user: any;
+  user: {
+    name: string;
+    email: string;
+    image: string;
+  };
   expires: string;
 }
 
