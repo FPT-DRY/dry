@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "docker:start": "docker compose up --build -d",
-    "predev": "yarn run docker:start",
+    "prisma:init": "npx prisma migrate dev",
+    "predev": "yarn run docker:start & yarn run prisma:init",
     "dev": "next dev",
     "build": "next build",
     "prestart": "yarn run docker:start",
