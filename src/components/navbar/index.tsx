@@ -6,6 +6,7 @@ import { isEmpty } from 'lodash';
 import { signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import classNames from 'classnames/bind';
+import Image from 'next/image';
 
 import styles from './navbar.module.scss';
 
@@ -25,8 +26,15 @@ function NavBar({}: Props) {
             Sign In
           </Button>
         ) : (
-          <>
-            <p>{session?.user?.name}</p>
+          <div className={cx('flex justify-center items-center gap-4')}>
+            <label htmlFor='nickname'>{session?.user?.name}</label>
+            <Image
+              className='rounded-full border border-gray-700'
+              src={session?.user?.image}
+              alt='user-avatar'
+              width={40}
+              height={40}
+            />
             <Button
               variant='danger'
               onClick={async () => {
@@ -39,7 +47,7 @@ function NavBar({}: Props) {
             >
               Sign Out
             </Button>
-          </>
+          </div>
         )}
       </div>
     </nav>
