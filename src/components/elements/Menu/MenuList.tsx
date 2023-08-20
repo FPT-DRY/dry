@@ -1,12 +1,21 @@
+import classNames from 'classnames/bind';
 import React from 'react';
-import { MenuItemProps, MenuItemType } from './MenuItem';
 
-type Props = {
-  children: MenuItemType<React.ReactElement<MenuItemProps>>;
-};
+import styles from './menu.module.scss';
 
-function MenuList({ children }: Props) {
-  return <ul>{children}</ul>;
+const cx = classNames.bind(styles);
+
+interface MenuListProps extends React.HTMLProps<HTMLUListElement> {
+  show: boolean;
+  children: React.ReactNode;
+}
+
+function MenuList({ show, children, ...componentProps }: MenuListProps) {
+  return (
+    <ul className={cx('MenuList-root', { visible: show })} {...componentProps}>
+      {children}
+    </ul>
+  );
 }
 
 export default MenuList;
