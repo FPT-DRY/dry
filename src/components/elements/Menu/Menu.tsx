@@ -1,11 +1,21 @@
-import React from 'react'
+import React from 'react';
+import MenuList from './MenuList';
+import { MenuItemProps, MenuItemType } from './MenuItem';
 
-type Props = {}
-
-function Menu({}: Props) {
-  return (
-    <div>Menu</div>
-  )
+interface MenuProps extends React.HTMLProps<HTMLDivElement> {
+  children: React.ReactNode;
+  menuItems: MenuItemType<React.ReactElement<MenuItemProps>>;
 }
 
-export default Menu
+function Menu({ menuItems, children, ...componentProps }: MenuProps) {
+  return (
+    <>
+      <div {...componentProps}>{children}</div>
+      <MenuList>
+        {menuItems}
+      </MenuList>
+    </>
+  );
+}
+
+export default Menu;

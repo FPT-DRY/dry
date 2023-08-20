@@ -21,34 +21,36 @@ function NavBar({}: Props) {
   return (
     <nav className={cx('root')}>
       <div className={cx('auth-container')}>
-        {isEmpty(session) ? (
-          <Button variant='success' onClick={() => signIn()}>
-            Sign In
-          </Button>
-        ) : (
-          <div className={cx('flex justify-center items-center gap-4')}>
-            <label htmlFor='nickname'>{session?.user?.name}</label>
-            <Image
-              className='rounded-full border border-gray-700'
-              src={session?.user?.image}
-              alt='user-avatar'
-              width={40}
-              height={40}
-            />
-            <Button
-              variant='danger'
-              onClick={async () => {
-                const data = await signOut({
-                  redirect: false,
-                  callbackUrl: '/sign-out',
-                });
-                router.push(data.url);
-              }}
-            >
-              Sign Out
+        <div className={cx('flex justify-center items-center gap-4')}>
+          {isEmpty(session) ? (
+            <Button variant='success' onClick={() => signIn()}>
+              Sign In
             </Button>
-          </div>
-        )}
+          ) : (
+            <>
+              <label htmlFor='nickname'>{session?.user?.name}</label>
+              <Image
+                className='rounded-full border border-gray-700'
+                src={session?.user?.image}
+                alt='user-avatar'
+                width={40}
+                height={40}
+              />
+              <Button
+                variant='danger'
+                onClick={async () => {
+                  const data = await signOut({
+                    redirect: false,
+                    callbackUrl: '/sign-out',
+                  });
+                  router.push(data.url);
+                }}
+              >
+                Sign Out
+              </Button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

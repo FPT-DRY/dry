@@ -5,10 +5,9 @@
   "scripts": {
     "docker:start": "docker compose up --build -d",
     "prisma:init": "npx prisma migrate dev",
-    "predev": "yarn run docker:start & yarn run prisma:init",
+    "env:init": "yarn run docker:start & yarn run prisma:init",
     "dev": "next dev",
     "build": "next build",
-    "prestart": "yarn run docker:start",
     "start": "next start",
     "lint": "next lint"
   },

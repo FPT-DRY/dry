@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 type Props = {
   redirectTo: string;
@@ -13,7 +13,7 @@ export default function useRedirectAfterTime({
   const router = useRouter();
   const [secondsRemaining, setSecondsRemaining] = useState<number>(seconds);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (secondsRemaining <= 1) {
       router.push(redirectTo);
     }

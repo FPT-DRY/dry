@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+export type MenuItemProps = {
+  onClick: React.MouseEventHandler<HTMLLIElement>;
+  children?: React.ReactNode;
+};
 
-function MenuItem({}: Props) {
-  return (
-    <div>MenuItem</div>
-  )
+export type MenuItemType<T> = T extends React.ReactElement<infer P>
+  ? P extends MenuItemProps
+    ? T
+    : never
+  : never;
+
+export default function MenuItem({ onClick, children }: MenuItemProps) {
+  return <li onClick={onClick}>{children}</li>;
 }
-
-export default MenuItem
