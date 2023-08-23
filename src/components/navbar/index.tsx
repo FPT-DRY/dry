@@ -9,6 +9,8 @@ import classNames from 'classnames/bind';
 import Image from 'next/image';
 
 import styles from './navbar.module.scss';
+import MenuList from '@components/elements/Menu';
+import Menu from '@components/elements/Menu';
 
 const cx = classNames.bind(styles);
 
@@ -29,25 +31,31 @@ function NavBar({}: Props) {
           ) : (
             <>
               <label htmlFor='nickname'>{session?.user?.name}</label>
-              <Image
-                className='rounded-full border border-gray-700'
-                src={session?.user?.image}
-                alt='user-avatar'
-                width={40}
-                height={40}
-              />
-              <Button
-                variant='danger'
-                onClick={async () => {
-                  const data = await signOut({
-                    redirect: false,
-                    callbackUrl: '/sign-out',
-                  });
-                  router.push(data.url);
-                }}
+              <Menu
+                position='right'
+                items={[
+                  <Button
+                    variant='danger'
+                    onClick={async () => {
+                      const data = await signOut({
+                        redirect: false,
+                        callbackUrl: '/sign-out',
+                      });
+                      router.push(data.url);
+                    }}
+                  >
+                    Sign Out
+                  </Button>,
+                ]}
               >
-                Sign Out
-              </Button>
+                <Image
+                  className='rounded-full border border-gray-700'
+                  src={session?.user?.image}
+                  alt='user-avatar'
+                  width={40}
+                  height={40}
+                />
+              </Menu>
             </>
           )}
         </div>
