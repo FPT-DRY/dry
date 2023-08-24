@@ -9,4 +9,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   return await NextAuth(req, res, authOptions);
 };
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }; // FIXME: figure out why we can't build project due to type error on this line
