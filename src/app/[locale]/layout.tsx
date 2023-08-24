@@ -1,3 +1,4 @@
+import React from 'react';
 import { notFound } from 'next/navigation';
 
 import Providers from '@components/providers';

@@ -1,16 +1,15 @@
 'use client';
 
 import Button from '@components/elements/Button';
+import Menu from '@components/elements/Menu';
 import useSession from '@hooks/useSession';
+import classNames from 'classnames/bind';
 import { isEmpty } from 'lodash';
 import { signIn, signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import classNames from 'classnames/bind';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import styles from './navbar.module.scss';
-import MenuList from '@components/elements/Menu';
-import Menu from '@components/elements/Menu';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +34,7 @@ function NavBar({}: Props) {
                 position='right'
                 items={[
                   <Button
+                    key={'sign-out'}
                     variant='danger'
                     onClick={async () => {
                       const data = await signOut({

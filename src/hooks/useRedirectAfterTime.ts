@@ -25,7 +25,7 @@ export default function useRedirectAfterTime({
     return () => {
       clearInterval(timer);
     }
-  }, [secondsRemaining]);
+  }, [secondsRemaining, redirectTo]);
 
   return secondsRemaining;
 }

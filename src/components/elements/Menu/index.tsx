@@ -6,7 +6,7 @@ import styles from './menu.module.scss';
 const cx = classNames.bind(styles);
 
 type ClickableElementProps = React.HTMLProps<HTMLElement> & {
-  onClick?: (...args: any) => void;
+  onClick?: (..._args: any) => void;
 };
 
 interface MenuProps extends React.HTMLProps<HTMLDivElement> {
@@ -56,9 +56,9 @@ function Menu({
           'position-right': position === 'right',
         })}
       >
-        {items.map((item) => {
+        {items.map((item, idx) => {
           return (
-            <li className={cx('menu-item', classes?.menuItemClassName)}>
+            <li key={idx} className={cx('menu-item', classes?.menuItemClassName)}>
               {item}
             </li>
           );

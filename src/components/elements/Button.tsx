@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -34,8 +36,6 @@ const Button = ({
         return 'bg-green-500 hover:bg-green-700 text-white';
       case 'warning':
         return 'bg-amber-500 hover:bg-amber-700 text-white';
-      case 'outline-danger':
-        return 'bg-white text-red-500 border border-red-500 hover:text-white hover:bg-red-700';
       case 'outline-danger':
         return 'bg-white text-red-500 border border-red-500 hover:text-white hover:bg-red-700';
       case 'outline-success':
