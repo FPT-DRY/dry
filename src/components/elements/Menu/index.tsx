@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import styles from './menu.module.scss';
 
@@ -27,11 +27,26 @@ function Menu({
   children,
   ...componentProps
 }: MenuProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState<boolean>(false);
 
-  const onClickHandler = () => {
+  const inboundOnClickHandler = () => {
     setShow((prevState) => !prevState);
   };
+
+  const outboundOnClickHandler = (evt: MouseEvent) => { 
+    if (ref.current && !ref.current.contains(evt.target as Node)) {
+      setShow(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', outboundOnClickHandler);
+
+    return () => {
+      document.removeEventListener('click', outboundOnClickHandler);
+    };
+  }, []);
 
   const mappedPropsChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -39,7 +54,7 @@ function Menu({
       const props: ClickableElementProps = {
         ...childProps,
         className: cx(childProps.className, 'cursor-pointer'),
-        onClick: onClickHandler,
+        onClick: inboundOnClickHandler,
       };
       return React.cloneElement(child, props);
     }
@@ -47,7 +62,11 @@ function Menu({
   });
 
   return (
-    <div className={cx('root', classes?.menuClassName)} {...componentProps}>
+    <div
+      ref={ref}
+      className={cx('root', classes?.menuClassName)}
+      {...componentProps}
+    >
       {mappedPropsChildren}
       <ul
         className={cx('menu-list', classes?.menuListClassName, {
@@ -58,7 +77,10 @@ function Menu({
       >
         {items.map((item, idx) => {
           return (
-            <li key={idx} className={cx('menu-item', classes?.menuItemClassName)}>
+            <li
+              key={idx}
+              className={cx('menu-item', classes?.menuItemClassName)}
+            >
               {item}
             </li>
           );
