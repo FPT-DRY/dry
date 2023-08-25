@@ -35,7 +35,7 @@ const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials, req) {
-        if (!credentials?.username || !credentials.password) {
+        if (!credentials?.username || !credentials?.password) {
           return null;
         }
 
