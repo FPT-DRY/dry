@@ -16,6 +16,7 @@ interface MenuProps extends React.HTMLProps<HTMLDivElement> {
     menuItemClassName: string;
   };
   position?: 'left' | 'right';
+  hover?: boolean;
   items: React.ReactElement[];
   children: React.ReactElement;
 }
@@ -24,29 +25,36 @@ function Menu({
   classes,
   position,
   items,
+  hover,
   children,
   ...componentProps
 }: MenuProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const [show, setShow] = useState<boolean>(false);
 
   const inboundOnClickHandler = () => {
     setShow((prevState) => !prevState);
   };
 
-  const outboundOnClickHandler = (evt: MouseEvent) => { 
-    if (ref.current && !ref.current.contains(evt.target as Node)) {
+  const outboundOnClickHandler = (evt: MouseEvent) => {
+    const target = evt.target as Node;
+    if (!menuRef.current?.contains(target)) {
       setShow(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('click', outboundOnClickHandler);
+    if (!hover) {
+      document.addEventListener('click', outboundOnClickHandler);
+    } else {
+      document.removeEventListener('click', outboundOnClickHandler);
+    }
 
     return () => {
       document.removeEventListener('click', outboundOnClickHandler);
     };
-  }, []);
+  }, [hover]);
 
   const mappedPropsChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -54,7 +62,7 @@ function Menu({
       const props: ClickableElementProps = {
         ...childProps,
         className: cx(childProps.className, 'cursor-pointer'),
-        onClick: inboundOnClickHandler,
+        onClick: !hover ? inboundOnClickHandler : undefined,
       };
       return React.cloneElement(child, props);
     }
@@ -63,12 +71,13 @@ function Menu({
 
   return (
     <div
-      ref={ref}
-      className={cx('root', classes?.menuClassName)}
+      ref={menuRef}
+      className={cx('root', classes?.menuClassName, { hover })}
       {...componentProps}
     >
       {mappedPropsChildren}
       <ul
+        ref={listRef}
         className={cx('menu-list', classes?.menuListClassName, {
           visible: show,
           'position-left': position === 'left',

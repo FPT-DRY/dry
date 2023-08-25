@@ -31,6 +31,7 @@ function NavBar({}: Props) {
             <>
               <label htmlFor='nickname'>{session?.user?.name}</label>
               <Menu
+                hover
                 position='right'
                 items={[
                   <Button
