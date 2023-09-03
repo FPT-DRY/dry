@@ -1,3 +1,21 @@
+@import '@stylesheets/lib/library';
+@import 'react-tooltip/dist/react-tooltip.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-icons {
+  display: inline-block;
+  vertical-align: text-bottom;
+
+  & + span, span + &  {
+    margin-left: 5px;
+  }
+}
+
+@layer components {
+  .absolute-center {
+    @include absolute-center();
+  }
+}

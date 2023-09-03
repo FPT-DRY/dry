@@ -14,6 +14,7 @@ export interface IButtonProps
     | 'outline-success'
     | 'outline-primary';
   square?: boolean;
+  fullScreen?: boolean;
   paddingLess?: boolean;
 }
 
@@ -22,6 +23,7 @@ const Button = ({
   children,
   variant,
   square,
+  fullScreen,
   paddingLess,
   type = 'button',
   ...props
@@ -53,7 +55,7 @@ const Button = ({
       {...props}
       type={type}
       className={`
-        min-w-max
+        ${fullScreen ? 'min-w-full' : 'min-w-max'}
         ${getVariant()} transition duration-500  ${
           !paddingLess && 'py-2 px-4'
         }  ${!square && 'rounded-md'} active:scale-95 ${className}

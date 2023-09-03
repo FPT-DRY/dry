@@ -1,0 +1,17 @@
+.root {
+  $divider-width: 1px;
+  $divider-color: #ccc;
+  $divider-style: $divider-width solid $divider-color;
+  display: block;
+
+  &.x-axis {
+    width: 100%;
+    height: $divider-width;
+    border-top: $divider-style;
+  }
+  &.y-axis {
+    width: $divider-width;
+    height: 100%;
+    border-left: $divider-style;
+  }
+}

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .root {
@@ -57,4 +58,5 @@
 .menu-item {
   margin: 0;
   padding: 5px;
+  width: 100%;
 }

@@ -1,5 +1,10 @@
 import classNames from 'classnames/bind';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  JSXElementConstructor,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import styles from './menu.module.scss';
 
@@ -85,7 +90,10 @@ function Menu({
         })}
       >
         {items.map((item, idx) => {
-          return (
+          const elementType = item.type as JSXElementConstructor<any>;          
+          return elementType.name === 'Divider' ? (
+            item
+          ) : (
             <li
               key={idx}
               className={cx('menu-item', classes?.menuItemClassName)}

@@ -9,11 +9,51 @@
   background-color: $navbar-bg-color;
   color: $navbar-text-color;
 
+  & > *:first-child {
+    margin-left: 10px;
+  }
+
+  & > *:last-child {
+    margin-right: 10px;
+  }
+
+  .logo {
+    display: block;
+    width: 75px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: dimgrey;
+  }
+
   .auth-container {
     margin-left: auto;
 
     & > div {
-      margin: 5px 10px;
+      margin: 5px 0px;
+    }
+  }
+
+  .user-info {
+    width: 200px;
+    padding: 0 5px;
+    text-align: center;
+
+    & > * {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+
+    .text-username {
+      display: block;
+      color: red;
+      font-weight: bold;
+    }
+
+    .text-email {
+      display: block;
+      color: black;
     }
   }
 }
