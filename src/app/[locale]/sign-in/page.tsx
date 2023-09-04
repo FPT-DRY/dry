@@ -1,15 +1,28 @@
+'use client';
+
 import Button from '@components/elements/Button';
 import FormControl from '@components/elements/FormControl';
 import OAuthProvider from '@components/providers/oauth';
 import classNames from 'classnames/bind';
 
 import styles from './SignIn.module.scss';
+import useSession from '@hooks/useSession';
+import { useEffect } from 'react';
+import { redirect } from 'next/navigation';
 
 const cx = classNames.bind(styles);
 
 type Props = {};
 
 function SignIn({}: Props) {
+  const session = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      redirect('/');
+    }
+  }, [session]);
+
   return (
     <div className={cx('root')}>
       <div className={cx('container', 'absolute-center')}>
