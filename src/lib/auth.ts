@@ -9,7 +9,8 @@ import prisma from './prisma';
 
 const authOptions: AuthOptions = {
   pages: {
-    /* override signIn, signOut, error page urls here... */
+    signIn: '/sign-in',
+    signOut: '/sign-out',
   },
   adapter: PrismaAdapter(prisma),
   session: {
@@ -26,12 +27,10 @@ const authOptions: AuthOptions = {
         username: {
           label: 'Username',
           type: 'text',
-          placeholder: 'Enter your username',
         },
         password: {
           label: 'Password',
           type: 'password',
-          placeholder: 'Enter your password',
         },
       },
       async authorize(credentials, req) {

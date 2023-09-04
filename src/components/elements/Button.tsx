@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface IButtonProps
+export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: React.ReactNode;
@@ -14,7 +14,7 @@ export interface IButtonProps
     | 'outline-success'
     | 'outline-primary';
   square?: boolean;
-  fullScreen?: boolean;
+  fullSize?: boolean;
   paddingLess?: boolean;
 }
 
@@ -23,11 +23,11 @@ const Button = ({
   children,
   variant,
   square,
-  fullScreen,
+  fullSize,
   paddingLess,
   type = 'button',
   ...props
-}: IButtonProps) => {
+}: ButtonProps) => {
   const getVariant = () => {
     switch (variant) {
       case 'primary':
@@ -38,16 +38,8 @@ const Button = ({
         return 'bg-green-500 hover:bg-green-700 text-white';
       case 'warning':
         return 'bg-amber-500 hover:bg-amber-700 text-white';
-      case 'outline-danger':
-        return 'bg-white text-red-500 border border-red-500 hover:text-white hover:bg-red-700';
-      case 'outline-success':
-        return 'bg-white text-green-500 border border-green-500 hover:text-white hover:bg-green-700';
-      case 'outline-warning':
-        return 'bg-white text-amber-400 border border-amber-500 hover:text-white hover:bg-amber-500';
-      case 'outline-primary':
-        return 'bg-white text-violet-500 border border-violet-500 hover:text-white hover:bg-violet-700';
       default:
-        return 'bg-violet-500 hover:bg-violet-700 hover:bg-gra text-white shadow shadow-violet-600/25 hover:shadow-violet-600/75';
+        return 'bg-transparent text-white';
     }
   };
   return (
@@ -55,7 +47,7 @@ const Button = ({
       {...props}
       type={type}
       className={`
-        ${fullScreen ? 'min-w-full' : 'min-w-max'}
+        ${fullSize ? 'min-w-full' : 'min-w-max'}
         ${getVariant()} transition duration-500  ${
           !paddingLess && 'py-2 px-4'
         }  ${!square && 'rounded-md'} active:scale-95 ${className}

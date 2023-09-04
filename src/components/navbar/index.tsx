@@ -1,11 +1,13 @@
 'use client';
 
 import Button from '@components/elements/Button';
+import Divider from '@components/elements/Divider';
 import Menu from '@components/elements/Menu';
+import UserInfo from '@components/navbar/UserInfo';
 import useSession from '@hooks/useSession';
 import classNames from 'classnames/bind';
 import { capitalize, isEmpty } from 'lodash';
-import { signIn, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -13,8 +15,6 @@ import { FaUser } from 'react-icons/fa6';
 import { IoLogOut } from 'react-icons/io5';
 
 import styles from './navbar.module.scss';
-import UserInfo from './UserInfo';
-import Divider from '@components/elements/Divider';
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +30,7 @@ function NavBar({}: Props) {
       <div className={cx('auth-container')}>
         <div className={cx('flex justify-center items-center gap-4')}>
           {isEmpty(session) ? (
-            <Button variant='success' onClick={() => signIn()}>
+            <Button variant='success' onClick={() => router.push('/sign-in')}>
               <FaUser size={18} />
               <span>Sign In</span>
             </Button>
@@ -46,18 +46,12 @@ function NavBar({}: Props) {
                     email={session.user.email}
                     tooltipPosition='left'
                   />,
-                  <Divider key='divider-01'/>,
+                  <Divider key='divider-01' />,
                   <Button
-                    fullScreen
+                    fullSize
                     key={'sign-out'}
                     variant='danger'
-                    onClick={async () => {
-                      const data = await signOut({
-                        redirect: false,
-                        callbackUrl: '/sign-out',
-                      });
-                      router.push(data.url);
-                    }}
+                    onClick={() => router.push('/sign-out')}
                   >
                     <IoLogOut size={20} />
                     <span>Sign Out</span>

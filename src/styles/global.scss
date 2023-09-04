@@ -9,7 +9,8 @@
   display: inline-block;
   vertical-align: text-bottom;
 
-  & + span, span + &  {
+  & + span,
+  span + & {
     margin-left: 5px;
   }
 }
@@ -18,4 +19,16 @@
   .absolute-center {
     @include absolute-center();
   }
+
+  .card {
+    display: block;
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.2xl');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+}
+
+input {
+  outline: none;
 }

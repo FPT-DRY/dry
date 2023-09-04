@@ -1,5 +1,7 @@
-import { fetcher } from '@lib/fetch';
+import { http } from '@lib/http';
+import { useEffect } from 'react';
 import useSWR from 'swr';
+import { SESSION_KEY } from '~/constants/keys';
 
 type SessionData = {
   user: {
@@ -8,10 +10,29 @@ type SessionData = {
     image: string;
   };
   expires: string;
-}
+};
 
 export default function useSession() {
-  const { data: session } = useSWR<SessionData, any>('/api/auth/session', fetcher('get').init);
+  let { data: session } = useSWR<SessionData, any>(
+    '/api/auth/session',
+    http('get').fetch
+  );
+
+  useEffect(() => {
+    if (!session) {
+      const storedSession = sessionStorage.getItem(SESSION_KEY);
+      session =
+        storedSession !== null
+          ? (JSON.parse(storedSession) as SessionData)
+          : undefined;
+
+      if (session) {
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    }
+  }, []);
 
   return session;
 }

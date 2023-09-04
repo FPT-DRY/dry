@@ -1,0 +1,43 @@
+.root {
+  width: 100%;
+
+  .label {
+    display: inline-block;
+    font-weight: 500;
+    color: theme('colors.white');
+    margin-bottom: 0.25rem;
+    text-align: left;
+  }
+
+  .input {
+    width: 100%;
+    font-size: 1rem;
+    color: theme('colors.black.25');
+    margin: {
+      left: auto;
+      right: auto;
+      bottom: 0.5rem;
+    }
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+
+    &:focus-visible::placeholder {
+      color: transparent;
+      transition: all .35s linear;
+      transform-origin: right;
+    }
+  }
+
+  &.outline {
+    .input {
+      background-color: transparent;
+      color: theme('colors.white');
+      border: 1px solid #555;
+
+      &:focus-visible {
+        outline: -webkit-focus-ring-color auto 1px;
+      }
+    }
+  }
+}
