@@ -73,7 +73,9 @@ function FormControl({
             name={name}
             defaultValue={defaultValue}
             control={control}
-            render={({ field: { onChange, onBlur, name, value } }) => {
+            render={({
+              field: { onChange, onBlur, name, value },
+            }) => {
               const onControlledChange = (
                 evt: React.ChangeEvent<HTMLInputElement>
               ) => {

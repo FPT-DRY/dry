@@ -27,6 +27,25 @@ function SignIn() {
   const session = useSession();
   const translate = useTranslations();
 
+  const validationSchema = yup
+  .object<FormData>()
+  .shape({
+    username: yup
+      .string()
+      .min(6, translate('messages.username.min', { length: 6 }))
+      .max(50, translate('messages.username.max', { length: 50 }))
+      .matches(
+        /^[a-z0-9]{6,50}$/i,
+        translate('messages.username.pattern')
+      )
+      .required(translate('messages.username.required')),
+    password: yup
+      .string()
+      .min(6, translate('messages.password.min', { length: 6 }))
+      .required(translate('messages.password.required')),
+  })
+  .required();
+
   const {
     control,
     formState: { errors, isDirty },
@@ -37,26 +56,7 @@ function SignIn() {
       username: '',
       password: '',
     },
-    resolver: yupResolver(
-      yup
-        .object<FormData>()
-        .shape({
-          username: yup
-            .string()
-            .min(6, translate('messages.username.min', { length: 6 }))
-            .max(50, translate('messages.username.max', { length: 50 }))
-            .matches(
-              /^[a-z0-9]{6,50}$/i,
-              translate('messages.username.pattern')
-            )
-            .required(translate('messages.username.required')),
-          password: yup
-            .string()
-            .min(6, translate('messages.password.min', { length: 6 }))
-            .required(translate('messages.password.required')),
-        })
-        .required()
-    ),
+    resolver: yupResolver(validationSchema)
   });
 
   useEffect(() => {
