@@ -7,7 +7,6 @@ import UserInfo from '@components/navbar/UserInfo';
 import useSession from '@hooks/useSession';
 import classNames from 'classnames/bind';
 import { capitalize, isEmpty } from 'lodash';
-import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -24,6 +23,8 @@ function NavBar({}: Props) {
   const session = useSession();
   const router = useRouter();
 
+  const preventDragAndDropEventHandler = (evt: React.DragEvent<HTMLImageElement>) =>  evt.preventDefault()
+
   return (
     <nav className={cx('root')}>
       <Link className={cx('logo')} href='/'></Link>
@@ -39,6 +40,17 @@ function NavBar({}: Props) {
               <Menu
                 // hover
                 position='right'
+                anchor={
+                  <Image
+                    className='rounded-full border border-gray-700'
+                    src={session?.user?.image}
+                    alt='user-avatar'
+                    width={40}
+                    height={40}
+                    onDragStart={preventDragAndDropEventHandler}
+                    onDrop={preventDragAndDropEventHandler}
+                  />
+                }
                 items={[
                   <UserInfo
                     key='user-info'
@@ -57,15 +69,7 @@ function NavBar({}: Props) {
                     <span>Sign Out</span>
                   </Button>,
                 ]}
-              >
-                <Image
-                  className='rounded-full border border-gray-700'
-                  src={session?.user?.image}
-                  alt='user-avatar'
-                  width={40}
-                  height={40}
-                />
-              </Menu>
+              />
             </>
           )}
         </div>

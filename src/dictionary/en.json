@@ -15,5 +15,17 @@
         "appBar": {
           "home": "Home"
         }
+      },
+      "messages": {
+        "username": {
+          "pattern": "Username must consist of only letters and digits.",
+          "min": "Username must be at least {length} characters in length.",
+          "max": "Username must be at most {length} characters in length.",
+          "required": "Username is required."
+        },
+        "password": {
+          "min": "Password must be at least {length} characters in length.",
+          "required": "Password is required."
+        }
       }
 }

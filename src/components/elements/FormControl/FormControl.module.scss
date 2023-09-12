@@ -24,7 +24,7 @@
 
     &:focus-visible::placeholder {
       color: transparent;
-      transition: all .35s linear;
+      transition: all 0.35s linear;
       transform-origin: right;
     }
   }
@@ -39,5 +39,49 @@
         outline: -webkit-focus-ring-color auto 1px;
       }
     }
+  }
+
+  &:global(.validate) {
+    outline-offset: -1px;
+    outline-width: 2px;
+  }
+
+  &:global(.error) {
+    .label::after {
+      display: inline-block;
+      content: '[*]';
+      margin-left: 5px;
+      font-size: 12px;
+      vertical-align: top;
+      color: red;
+    }
+
+    &.outline {
+      .input:focus-visible {
+        outline-offset: -1px;
+        outline-width: 2px;
+        outline-style: outset;
+        outline-color: red;
+      }
+    }
+  }
+
+
+  &:global(.valid) {
+    &.outline {
+      .input:focus-visible {
+        outline-offset: -1px;
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: green;
+      }
+    }
+  }
+
+  .error-text {
+    background-color: theme('colors.gray.opacity.25');
+    color: theme('colors.corn');
+    padding: 2.5px 5px;
+    font-size: 14px;
   }
 }

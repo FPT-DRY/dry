@@ -14,10 +14,17 @@ const authOptions: AuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'database', // rely on jwt expire time or session record in database
+    strategy: 'jwt', // rely on jwt expire time or session record in database
   },
   callbacks: {
     /* define callback options here */
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
+    }
   },
   providers: [
     CredentialsProvider({
@@ -44,6 +51,8 @@ const authOptions: AuthOptions = {
           },
         });
 
+        console.log(user);
+
         if (
           !user ||
           !user.password ||
@@ -51,6 +60,9 @@ const authOptions: AuthOptions = {
         ) {
           return null;
         }
+
+        console.log(true);
+        
 
         return {
           id: user.id,

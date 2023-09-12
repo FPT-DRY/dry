@@ -50,7 +50,7 @@ function OAuthProvider({
     const text = `Sign in with ${providerInfo.name}`;
 
     const onOAuth2AuthorizeHandler = () => {
-      signIn(providerInfo.id, { callbackUrl: '/' }, { prompt: "login" });
+      signIn(providerInfo.id, {}, { prompt: "login" });
     }
 
     return (

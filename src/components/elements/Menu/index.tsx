@@ -22,16 +22,16 @@ interface MenuProps extends React.HTMLProps<HTMLDivElement> {
   };
   position?: 'left' | 'right';
   hover?: boolean;
+  anchor: React.ReactElement;
   items: React.ReactElement[];
-  children: React.ReactElement;
 }
 
 function Menu({
   classes,
   position,
-  items,
   hover,
-  children,
+  anchor,
+  items,
   ...componentProps
 }: MenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -61,26 +61,25 @@ function Menu({
     };
   }, [hover]);
 
-  const mappedPropsChildren = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      const childProps = child.props as ClickableElementProps;
+  const getMappedPropsAnchor = () => {
+    if (React.isValidElement(anchor)) {
+      const childProps = anchor.props as ClickableElementProps;
       const props: ClickableElementProps = {
         ...childProps,
         className: cx(childProps.className, 'cursor-pointer'),
         onClick: !hover ? inboundOnClickHandler : undefined,
       };
-      return React.cloneElement(child, props);
+      return React.cloneElement(anchor, props);
     }
-    return child;
-  });
-
+    return anchor;
+  }
   return (
     <div
       ref={menuRef}
       className={cx('root', classes?.menuClassName, { hover })}
       {...componentProps}
     >
-      {mappedPropsChildren}
+      {getMappedPropsAnchor()}
       <ul
         ref={listRef}
         className={cx('menu-list', classes?.menuListClassName, {

@@ -9,7 +9,15 @@ module.exports = {
           25: '#0d1117',
           50: '#161b22;',
         },
+        gray: {
+          opacity: {
+            25: '#DEDEDE25',
+            50: '#DEDEDE50',
+            75: '#DEDEDE75',
+          }
+        },
         white: '#fff',
+        corn: '#fbec5d'
       },
       margin: {
         '5px': '5px',
