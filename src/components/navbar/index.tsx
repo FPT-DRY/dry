@@ -7,6 +7,7 @@ import UserInfo from '@components/navbar/UserInfo';
 import useSession from '@hooks/useSession';
 import classNames from 'classnames/bind';
 import { capitalize, isEmpty } from 'lodash';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -22,8 +23,11 @@ type Props = {};
 function NavBar({}: Props) {
   const session = useSession();
   const router = useRouter();
+  const translate = useTranslations('components.navBar');
 
-  const preventDragAndDropEventHandler = (evt: React.DragEvent<HTMLImageElement>) =>  evt.preventDefault()
+  const preventDragAndDropEventHandler = (
+    evt: React.DragEvent<HTMLImageElement>
+  ) => evt.preventDefault();
 
   return (
     <nav className={cx('root')}>
@@ -66,7 +70,7 @@ function NavBar({}: Props) {
                     onClick={() => router.push('/sign-out')}
                   >
                     <IoLogOut size={20} />
-                    <span>Sign Out</span>
+                    <span>{translate('signOutBtn')}</span>
                   </Button>,
                 ]}
               />

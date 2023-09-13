@@ -1,11 +1,12 @@
 'use client';
 
 import Button, { ButtonProps } from '@components/elements/Button';
+import useOAuth2Provider, { ProviderData } from '@hooks/useOAuthProvider';
 import classNames from 'classnames/bind';
 import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
-import useOAuth2Provider, { ProviderData } from '@hooks/useOAuthProvider';
 
 import styles from './OAuthProvider.module.scss';
 
@@ -23,6 +24,7 @@ function OAuthProvider({
   ...buttonProps
 }: OAuthProviderProps) {
   const providers = useOAuth2Provider();
+  const translate = useTranslations('components.oauthProvider');
 
   if (!providers) {
     return;
@@ -47,11 +49,11 @@ function OAuthProvider({
         return;
     }
 
-    const text = `Sign in with ${providerInfo.name}`;
+    const text = `${translate('btnText')} ${providerInfo.name}`;
 
     const onOAuth2AuthorizeHandler = () => {
-      signIn(providerInfo.id, {}, { prompt: "login" });
-    }
+      signIn(providerInfo.id, {}, { prompt: 'login' });
+    };
 
     return (
       <Button
