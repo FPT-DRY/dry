@@ -1,3 +1,4 @@
+import { apiHandler } from '@lib/http';
 import prisma from '@lib/prisma';
 import { HttpClientError, NextParams } from 'api';
 import { NextRequest, NextResponse } from 'next/server';
@@ -6,7 +7,7 @@ type UserParams = {
   id: string;
 };
 
-export async function GET(
+async function findUserById(
   req: NextRequest,
   { params }: NextParams<UserParams>
 ) {
@@ -28,3 +29,7 @@ export async function GET(
     });
   }
 }
+
+module.exports = apiHandler({
+  GET: findUserById,
+});
