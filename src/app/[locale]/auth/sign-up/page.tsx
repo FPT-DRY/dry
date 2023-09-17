@@ -94,6 +94,9 @@ function SignUp() {
           labelText={translate('form.firstNameLabel')}
           name='first-name'
           placeholder={translate('form.firstNamePlaceholder')}
+          errorProps={{
+            className: 'non-transparent',
+          }}
         />
         <FormControl
           labelText={translate('form.lastNameLabel')}

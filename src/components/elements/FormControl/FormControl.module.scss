@@ -83,5 +83,10 @@
     color: theme('colors.corn');
     padding: 2.5px 5px;
     font-size: 14px;
+    z-index: 100;
+
+    &:global(.non-transparent) {
+      background-color: theme('colors.stone.700');
+    }
   }
 }

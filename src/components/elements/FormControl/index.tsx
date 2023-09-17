@@ -16,6 +16,11 @@ interface FormControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
   labelText: string;
   variant?: VariantsType;
   name: string;
+  labelProps?: Omit<
+    React.LabelHTMLAttributes<HTMLLabelElement>,
+    'id' | 'htmlFor'
+  >;
+  errorProps?: React.HTMLAttributes<HTMLSpanElement>;
 }
 
 interface InputControlProps extends FormControlProps {
@@ -30,6 +35,8 @@ const InputControl = memo(
     labelText,
     variant = 'standard',
     formContext,
+    labelProps,
+    errorProps,
     ...inputProps
   }: InputControlProps) => {
     const ref = useRef<HTMLDivElement | null>(null);
@@ -66,8 +73,9 @@ const InputControl = memo(
           })}
         >
           <label
+            {...labelProps}
             id={generatedLabelId}
-            className={cx('label')}
+            className={cx('label', labelProps?.className)}
             htmlFor={id || generatedInputId}
           >
             {labelText}
@@ -110,8 +118,9 @@ const InputControl = memo(
           )}
           {!isEmpty(error) && error.message !== undefined && (
             <Tooltip
+              {...errorProps}
               noArrow
-              className={cx('error-text')}
+              className={cx('error-text', errorProps?.className)}
               anchorSelect={'#' + generatedLabelId}
               place='right'
               positionStrategy='absolute'

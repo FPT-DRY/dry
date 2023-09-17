@@ -14,10 +14,10 @@ module.exports = {
             25: '#DEDEDE25',
             50: '#DEDEDE50',
             75: '#DEDEDE75',
-          }
+          },
         },
         white: '#fff',
-        corn: '#fbec5d'
+        corn: '#fbec5d',
       },
       margin: {
         '5px': '5px',
