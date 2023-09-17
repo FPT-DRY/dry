@@ -1,4 +1,6 @@
-import prisma from '@lib/prisma';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 async function main() {
   await prisma.user.upsert({
@@ -8,7 +10,7 @@ async function main() {
     update: {},
     create: {
       username: 'john.doe',
-      password: '123456Abc',
+      password: '$2a$07$FGBp3ilWdjWKiFGZEaFun.QD.VvBHuQ79t8hf6gzgNsBy510pf/iy', //123456Abc
       name: 'John Doe',
       email: 'john.doe@prisma.io',
       image: null,
@@ -22,7 +24,7 @@ async function main() {
     update: {},
     create: {
       username: 'mary.jane',
-      password: 'Abc123456',
+      password: '$2a$07$RpN5otfwBAO6GVUmxq8X/e7Hh14PjtmMhGaAMFODNnrNsgc4vFBfW', //Abc123456
       name: 'Mary Jane',
       email: 'mary.jane@prisma.io',
       image: null,

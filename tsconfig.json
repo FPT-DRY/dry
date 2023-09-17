@@ -24,6 +24,9 @@
       "@stylesheets/*": ["./src/styles/*"],
       "@lib/*": ["./src/lib/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@icons/*": ["./src/assets/icons/*"],
+      "@features/*": ["./src/features/*"],
+      "*": ["./src/types/*"],
       "~/*": ["./src/*"]
     }
   },

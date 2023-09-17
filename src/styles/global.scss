@@ -1,5 +1,6 @@
 @import '@stylesheets/lib/library';
 @import 'react-tooltip/dist/react-tooltip.css';
+@import 'react-toastify/dist/ReactToastify.css';
 
 @tailwind base;
 @tailwind components;
@@ -31,4 +32,19 @@
 
 input {
   outline: none;
+}
+
+button {
+  &.disabled {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.link {
+  color: #ccc;
+
+  &:hover {
+    color: theme('colors.white');
+  }
 }

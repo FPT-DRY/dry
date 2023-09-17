@@ -14,25 +14,47 @@
   "components": {
     "navBar": {
       "signOutBtn": "Sign Out"
-    },
-    "oauthProvider": {
-      "btnText": "Sign in with"
+    }
+  },
+  "features": {
+    "authentication": {
+      "oauth": "Sign in with {provider}"
     }
   },
   "pages": {
-    "signIn": {
-      "usernameLabel": "Username",
-      "usernamePlaceholder": "Enter your username",
-      "passwordLabel": "Password",
-      "passwordPlaceholder": "Enter your password",
-      "loginBtn": "Login",
-      "createAccountLink": "Create an account",
-      "forgetPasswordLink": "Forget password?"
-    },
-    "signOut": {
-      "alert": {
-        "line1": "You have logged out from current session.",
-        "line2": " Redirecting to homepage after {seconds} second"
+    "auth": {
+      "form": {
+        "usernameLabel": "Username",
+        "usernamePlaceholder": "Enter your username",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPasswordLabel": "Confirm Password",
+        "confirmPasswordPlaceholder": "Re-enter your password to confirm",
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "Enter first name",
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Enter last name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter your email address"
+      },
+      "signIn": {
+        "loginBtn": "Login",
+        "createAccountLink": "Create an account",
+        "forgetPasswordLink": "Forget password?",
+        "messages": {
+          "missingParamsError": "The Username or password is missing!",
+          "credentialsMismatchError": "The username or password is incorrect!"
+        }
+      },
+      "signUp": {
+        "createAccount": "Create new Account",
+        "signUpBtn": "Sign Up"
+      },
+      "signOut": {
+        "alert": {
+          "line1": "You have logged out from current session.",
+          "line2": " Redirecting to homepage after {seconds} second"
+        }
       }
     }
   },
@@ -47,6 +69,20 @@
       "password": {
         "min": "Password must be at least {length} characters in length.",
         "required": "Password is required."
+      },
+      "confirm-password": {
+        "mismatch": "Confirm password must match."
+      },
+      "name": {
+        "pattern": "Only letters and space are valid.",
+        "required": {
+          "first": "First name is required.",
+          "last": "Last name is required."
+        }
+      },
+      "email": {
+        "pattern": "Invalid email address. (ex: firstname.lastname@provider.domain)",
+        "required": "Email is required."
       }
     }
   }

@@ -1,5 +1,6 @@
+import { AUTH_ERROR } from '@features/authentication/constants';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { compare } from 'bcryptjs';
+import { compare, genSaltSync } from 'bcryptjs';
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
@@ -7,9 +8,11 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import prisma from './prisma';
 
+export const passwordSalt = genSaltSync(7);
+
 const authOptions: AuthOptions = {
   pages: {
-    signIn: '/sign-in',
+    signIn: 'auth/sign-in',
     signOut: '/sign-out',
   },
   adapter: PrismaAdapter(prisma),
@@ -20,11 +23,11 @@ const authOptions: AuthOptions = {
     /* define callback options here */
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
       // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
-    }
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
   },
   providers: [
     CredentialsProvider({
@@ -42,7 +45,7 @@ const authOptions: AuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials?.username || !credentials?.password) {
-          return null;
+          throw { name: 'AuthError', message: AUTH_ERROR.MISSING_AUTH_PARAMS };
         }
 
         const user = await prisma.user.findUnique({
@@ -51,18 +54,16 @@ const authOptions: AuthOptions = {
           },
         });
 
-        console.log(user);
-
         if (
           !user ||
           !user.password ||
           !(await compare(credentials.password, user.password))
         ) {
-          return null;
+          throw {
+            name: 'AuthError',
+            message: AUTH_ERROR.CREDENTIALS_MISMATCH,
+          };
         }
-
-        console.log(true);
-        
 
         return {
           id: user.id,

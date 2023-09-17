@@ -8,23 +8,23 @@ import { useTranslations } from 'next-intl';
 import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 
-import styles from './OAuthProvider.module.scss';
+import styles from './OAuthSignIn.module.scss';
 
 const cx = classNames.bind(styles);
 
 type SupportedProvidersType = 'google' | 'github';
 
-interface OAuthProviderProps extends Omit<ButtonProps, 'fullSize' | 'onClick'> {
+interface OAuthSignInProps extends Omit<ButtonProps, 'fullSize' | 'onClick'> {
   provider: SupportedProvidersType;
 }
 
-function OAuthProvider({
+function OAuthSignIn({
   provider,
   className,
   ...buttonProps
-}: OAuthProviderProps) {
+}: OAuthSignInProps) {
   const providers = useOAuth2Provider();
-  const translate = useTranslations('components.oauthProvider');
+  const translate = useTranslations('features.authentication');
 
   if (!providers) {
     return;
@@ -49,8 +49,6 @@ function OAuthProvider({
         return;
     }
 
-    const text = `${translate('btnText')} ${providerInfo.name}`;
-
     const onOAuth2AuthorizeHandler = () => {
       signIn(providerInfo.id, {}, { prompt: 'login' });
     };
@@ -63,10 +61,12 @@ function OAuthProvider({
         {...buttonProps}
       >
         {icon}
-        <span className={cx('text')}>{text}</span>
+        <span className={cx('text')}>
+          {translate('oauth', { provider: providerInfo.name })}
+        </span>
       </Button>
     );
   }
 }
 
-export default OAuthProvider;
+export default OAuthSignIn;

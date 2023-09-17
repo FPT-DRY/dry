@@ -5,6 +5,7 @@ import Divider from '@components/elements/Divider';
 import Menu from '@components/elements/Menu';
 import UserInfo from '@components/navbar/UserInfo';
 import useSession from '@hooks/useSession';
+import { default as defaultUser } from '@icons/user-default-64.png';
 import classNames from 'classnames/bind';
 import { capitalize, isEmpty } from 'lodash';
 import { useTranslations } from 'next-intl';
@@ -35,7 +36,10 @@ function NavBar({}: Props) {
       <div className={cx('auth-container')}>
         <div className={cx('flex justify-center items-center gap-4')}>
           {isEmpty(session) ? (
-            <Button variant='success' onClick={() => router.push('/sign-in')}>
+            <Button
+              variant='success'
+              onClick={() => router.push('/auth/sign-in')}
+            >
               <FaUser size={18} />
               <span>Sign In</span>
             </Button>
@@ -47,7 +51,7 @@ function NavBar({}: Props) {
                 anchor={
                   <Image
                     className='rounded-full border border-gray-700'
-                    src={session?.user?.image}
+                    src={session?.user?.image || defaultUser}
                     alt='user-avatar'
                     width={40}
                     height={40}
