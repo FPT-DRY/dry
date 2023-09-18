@@ -15,7 +15,7 @@ type SessionData = {
 export default function useSession() {
   let { data: session } = useSWR<SessionData, any>(
     '/api/auth/session',
-    http('get').fetch
+    http('GET').fetch
   );
 
   useEffect(() => {

@@ -18,7 +18,7 @@ export default function useRedirectAfterTime({
       router.push(redirectTo);
     }
 
-    const timer: NodeJS.Timer = setInterval(() => {
+    const timer = setInterval(() => {
       setSecondsRemaining((prevSecondsRemaining) => prevSecondsRemaining - 1);
     }, 1000);
 

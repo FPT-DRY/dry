@@ -22,12 +22,14 @@ async function findUsers(req: NextRequest) {
 }
 
 async function createUser(req: NextRequest) {
-  const modelVaidation = new ModelVaidation<UserUpsertRequest>();
+  const modelVaidation = new ModelVaidation<UserUpsertRequest>({
+    schema: {
+      required: ['username', 'password', 'name', 'email'],
+    },
+  });
 
   const body = await req.json();
-  const dto = modelVaidation.validate(body, new UserUpsertRequest(body), {
-    required: ['username', 'password', 'name', 'email'],
-  });
+  const dto = modelVaidation.validate(body, new UserUpsertRequest(body));
 
   const user = await prisma.user.create({
     data: {

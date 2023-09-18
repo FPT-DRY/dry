@@ -11,7 +11,13 @@ export function autoImplement<T>(defaults?: Partial<T>) {
 }
 
 export class ModelVaidation<T extends object> {
-  validate(obj: object, refObj: T, schema?: ValidationSchema) {
+  schema?: ValidationSchema;
+
+  constructor(config?: { schema?: ValidationSchema }) {
+    this.schema = config?.schema;
+  }
+
+  validate(obj: object, refObj: T) {
     const model = obj as any satisfies T;
 
     const objFields = Object.keys(obj);
@@ -35,8 +41,8 @@ export class ModelVaidation<T extends object> {
       throw HttpClientError.badClient('Field validation error.', cause);
     }
 
-    if (schema?.required && schema.required.length > 0) {
-      forEach(schema.required, (field) => {
+    if (this.schema?.required && this.schema.required.length > 0) {
+      forEach(this.schema.required, (field) => {
         if (!objFields.includes(field)) {
           missingFields.push(field);
         }

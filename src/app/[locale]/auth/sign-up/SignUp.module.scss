@@ -10,8 +10,10 @@
   color: theme('colors.white');
   font-weight: bold;
 
-  :disabled {
+  &:disabled {
     background-color: theme('colors.gray.500');
     color: #ccc;
+    pointer-events: none;
+    user-select: none;
   }
 }

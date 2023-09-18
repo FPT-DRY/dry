@@ -21,6 +21,7 @@
     padding: 0.5rem 1rem;
     box-sizing: border-box;
     border-radius: 0.5rem;
+    transition: border-width 400ms linear;
 
     &:focus-visible::placeholder {
       color: transparent;
@@ -56,6 +57,11 @@
       color: red;
     }
 
+    .input {
+      border-right: 12px solid red;
+      transition-duration: 500ms;
+    }
+
     &.outline {
       .input:focus-visible {
         outline-offset: -1px;
@@ -68,6 +74,10 @@
 
 
   &:global(.valid) {
+    .input {
+      border-color: green;
+    }
+
     &.outline {
       .input:focus-visible {
         outline-offset: -1px;

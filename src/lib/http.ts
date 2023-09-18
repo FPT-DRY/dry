@@ -1,18 +1,26 @@
 import { Prisma } from '@prisma/client';
 import { HttpClientError, HttpMethod, HttpServerError } from 'api';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const PAGINATION = {
   DEFAULT_PAGE_SIZE: 10,
 };
 
+interface HttpConfig<D> extends Omit<AxiosRequestConfig<D>, 'url' | 'method'> {}
+
 export const http = (method: HttpMethod) => {
-  function fetch(url: string) {
+  function fetch<T = any, D = any>(
+    url: string,
+    config?: HttpConfig<D>
+  ): Promise<T> {
     return axios({
       method,
       url,
-    }).then((response) => response.data);
+      ...config,
+    })
+      .then((response) => response.data)
+      .catch((error) => Promise.reject(error));
   }
   return {
     fetch,

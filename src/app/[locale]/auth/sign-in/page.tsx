@@ -41,9 +41,9 @@ function SignIn() {
     .shape({
       username: yup
         .string()
+        .matches(/^[a-z0-9._]{6,50}$/i, messages('username.pattern'))
         .min(6, messages('username.min', { length: 6 }))
         .max(50, messages('username.max', { length: 50 }))
-        .matches(/^[a-z0-9._]{6,50}$/i, messages('username.pattern'))
         .required(messages('username.required')),
       password: yup
         .string()
@@ -117,8 +117,7 @@ function SignIn() {
                 'sign-in-btn',
                 'mt-[15px]',
                 'px-[10px]',
-                'py-[15px]',
-                { disabled: isDisabled }
+                'py-[15px]'
               )}
               disabled={isDisabled}
               onClick={handleSubmit(onSubmitLoginHandler)}
