@@ -2,7 +2,7 @@ import Toast from '@components/elements/Toast';
 import classNames from 'classnames/bind';
 import { Slide } from 'react-toastify';
 
-import styles from './Auth.module.scss';
+import styles from './AuthWrapper.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function AuthLayout({ children }: Props) {
+function AuthWrapper({ children }: Props) {
   return (
     <div className={cx('root')}>
       <div className={cx('container', 'absolute-center')}>{children}</div>
@@ -25,4 +25,4 @@ function AuthLayout({ children }: Props) {
   );
 }
 
-export default AuthLayout;
+export default AuthWrapper;

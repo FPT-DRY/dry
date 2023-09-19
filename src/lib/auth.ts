@@ -12,7 +12,7 @@ export const passwordSalt = genSaltSync(7);
 
 const authOptions: AuthOptions = {
   pages: {
-    signIn: 'auth/sign-in',
+    signIn: '/sign-in',
     signOut: '/sign-out',
   },
   adapter: PrismaAdapter(prisma),

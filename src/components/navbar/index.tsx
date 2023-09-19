@@ -36,10 +36,7 @@ function NavBar({}: Props) {
       <div className={cx('auth-container')}>
         <div className={cx('flex justify-center items-center gap-4')}>
           {isEmpty(session) ? (
-            <Button
-              variant='success'
-              onClick={() => router.push('/auth/sign-in')}
-            >
+            <Button variant='success' onClick={() => router.push('/sign-in')}>
               <FaUser size={18} />
               <span>Sign In</span>
             </Button>

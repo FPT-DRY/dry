@@ -2,14 +2,14 @@ import { HttpMethod } from 'api';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
 
-type DefaultConfig<T> = {
+type DefaultConfig = {
   baseUrl?: string;
 };
 
 type FetchType<D> = Omit<AxiosRequestConfig<D>, 'method'>;
 type FetchStatus = { code: number; text: string };
 
-export function useApi<T = any, D = any>(defaultConfig?: DefaultConfig<T>) {
+export function useApi<T = any, D = any>(defaultConfig?: DefaultConfig) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<FetchStatus | null>(null);
