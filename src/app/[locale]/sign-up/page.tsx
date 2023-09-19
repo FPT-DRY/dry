@@ -3,6 +3,7 @@
 import Button from '@components/elements/Button';
 import Form from '@components/elements/Form';
 import FormControl from '@components/elements/FormControl';
+import AuthLayout from '@features/authentication/layout';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useApi } from '@hooks/useApi';
 import classNames from 'classnames/bind';
@@ -12,7 +13,6 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import * as yup from 'yup';
 
-import AuthWrapper from '@features/authentication/components/wrapper';
 import styles from './SignUp.module.scss';
 
 const cx = classNames.bind(styles);
@@ -73,7 +73,7 @@ function SignUp() {
     .required();
 
   return (
-    <AuthWrapper>
+    <AuthLayout>
       <Form<FormData>
         className={cx('card')}
         defaultValues={defaultValues}
@@ -167,7 +167,7 @@ function SignUp() {
           );
         }}
       </Form>
-    </AuthWrapper>
+    </AuthLayout>
   );
 }
 

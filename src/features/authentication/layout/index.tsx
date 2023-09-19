@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function AuthWrapper({ children }: Props) {
+function AuthLayout({ children }: Props) {
   return (
     <div className={cx('root')}>
       <div className={cx('container', 'absolute-center')}>{children}</div>
@@ -25,4 +25,4 @@ function AuthWrapper({ children }: Props) {
   );
 }
 
-export default AuthWrapper;
+export default AuthLayout;

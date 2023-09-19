@@ -7,7 +7,7 @@ export const PAGINATION = {
   DEFAULT_PAGE_SIZE: 10,
 };
 
-interface HttpConfig<D> extends Omit<AxiosRequestConfig<D>, 'url' | 'method'> {}
+type HttpConfig<D> = Omit<AxiosRequestConfig<D>, 'url' | 'method'>;
 
 export const http = (method: HttpMethod) => {
   function fetch<T = any, D = any>(

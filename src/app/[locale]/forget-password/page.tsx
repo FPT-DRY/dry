@@ -1,9 +1,9 @@
-import AuthWrapper from '@features/authentication/components/wrapper';
+import AuthLayout from '@features/authentication/layout';
 
 type Props = {};
 
 function ForgetPassword({}: Props) {
-  return <AuthWrapper>ForgetPassword</AuthWrapper>;
+  return <AuthLayout>ForgetPassword</AuthLayout>;
 }
 
 export default ForgetPassword;

@@ -1,9 +1,9 @@
-import AuthWrapper from '@features/authentication/components/wrapper';
+import AuthLayout from '@features/authentication/layout';
 
 type Props = {};
 
 function Registered({}: Props) {
-  return <AuthWrapper>Registered</AuthWrapper>;
+  return <AuthLayout>Registered</AuthLayout>;
 }
 
 export default Registered;

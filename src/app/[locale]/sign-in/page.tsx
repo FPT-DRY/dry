@@ -5,6 +5,7 @@ import Form from '@components/elements/Form';
 import FormControl from '@components/elements/FormControl';
 import OAuthSignIn from '@features/authentication/components/oauth';
 import { AUTH_ERROR } from '@features/authentication/constants';
+import AuthLayout from '@features/authentication/layout';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useSession from '@hooks/useSession';
 import classNames from 'classnames/bind';
@@ -17,7 +18,6 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
-import AuthWrapper from '@features/authentication/components/wrapper';
 import styles from './SignIn.module.scss';
 
 const cx = classNames.bind(styles);
@@ -60,7 +60,7 @@ function SignIn() {
   }, [session]);
 
   return (
-    <AuthWrapper>
+    <AuthLayout>
       <Form<FormData>
         className={cx('card')}
         defaultValues={defaultValues}
@@ -148,7 +148,7 @@ function SignIn() {
           );
         }}
       </Form>
-    </AuthWrapper>
+    </AuthLayout>
   );
 }
 
