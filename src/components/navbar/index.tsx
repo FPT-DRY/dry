@@ -25,6 +25,7 @@ function NavBar({}: Props) {
   const session = useSession();
   const router = useRouter();
   const translate = useTranslations('components.navBar');
+  const userImage = session?.user?.image || defaultUser;
 
   const preventDragAndDropEventHandler = (
     evt: React.DragEvent<HTMLImageElement>
@@ -38,7 +39,7 @@ function NavBar({}: Props) {
           {isEmpty(session) ? (
             <Button variant='success' onClick={() => router.push('/sign-in')}>
               <FaUser size={18} />
-              <span>Sign In</span>
+              <span>{translate('signInBtn')}</span>
             </Button>
           ) : (
             <>
@@ -48,7 +49,7 @@ function NavBar({}: Props) {
                 anchor={
                   <Image
                     className='rounded-full border border-gray-700'
-                    src={session?.user?.image || defaultUser}
+                    src={userImage}
                     alt='user-avatar'
                     width={40}
                     height={40}
@@ -61,6 +62,7 @@ function NavBar({}: Props) {
                     key='user-info'
                     username={capitalize(session.user.name)}
                     email={session.user.email}
+                    icon={userImage}
                     tooltipPosition='left'
                   />,
                   <Divider key='divider-01' />,

@@ -57,9 +57,11 @@
       color: red;
     }
 
-    .input {
-      border-right: 12px solid red;
-      transition-duration: 500ms;
+    &.standard {
+      .input {
+        border-right: 12px solid red;
+        transition-duration: 500ms;
+      }
     }
 
     &.outline {
@@ -74,8 +76,10 @@
 
 
   &:global(.valid) {
-    .input {
-      border-color: green;
+    &.standard {
+      .input {
+        border-color: green;
+      }
     }
 
     &.outline {

@@ -26,7 +26,7 @@ export default function Providers({ nextIntlParams, children }: Props) {
       >
         <IconContext.Provider
           value={{
-            className: 'react-icons'
+            className: 'react-icons',
           }}
         >
           {children}

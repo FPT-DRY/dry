@@ -13,7 +13,7 @@ import { entries, isEmpty } from 'lodash';
 import { signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
@@ -29,6 +29,7 @@ type FormData = {
 
 function SignIn() {
   const session = useSession();
+  const router = useRouter();
   const messages = useTranslations('messages.validation');
   const translate = useTranslations('pages.auth');
 
@@ -76,8 +77,15 @@ function SignIn() {
               redirect: false,
               username: data.username,
               password: data.password,
+              callbackUrl: '/',
             });
+
+            if (!response?.ok) {
+              // TODO: handle for this case
+            }
+
             if (response?.error) {
+              router.push(`?${new URLSearchParams({ error: response.error })}`);
               switch (response.error) {
                 case AUTH_ERROR.MISSING_AUTH_PARAMS:
                   toast.error(translate('signIn.messages.missingParamsError'));
@@ -94,6 +102,8 @@ function SignIn() {
                   reset();
                   break;
               }
+            } else {
+              router.replace('/');
             }
           };
 
@@ -123,6 +133,11 @@ function SignIn() {
                 )}
                 disabled={isDisabled}
                 onClick={handleSubmit(onSubmitLoginHandler)}
+                onKeyUp={(evt) => {
+                  if (evt.key === 'Enter' && !isDisabled) {
+                    handleSubmit(onSubmitLoginHandler);
+                  }
+                }}
               >
                 {translate('signIn.loginBtn')}
               </Button>

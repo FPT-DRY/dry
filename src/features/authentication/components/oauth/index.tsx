@@ -5,6 +5,7 @@ import useOAuth2Provider, { ProviderData } from '@hooks/useOAuthProvider';
 import classNames from 'classnames/bind';
 import { signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -23,6 +24,7 @@ function OAuthSignIn({
   className,
   ...buttonProps
 }: OAuthSignInProps) {
+  const router = useRouter();
   const providers = useOAuth2Provider();
   const translate = useTranslations('features.authentication');
 
@@ -49,8 +51,17 @@ function OAuthSignIn({
         return;
     }
 
-    const onOAuth2AuthorizeHandler = () => {
-      signIn(providerInfo.id, {}, { prompt: 'login' });
+    const onOAuth2AuthorizeHandler = async () => {
+      const response = await signIn(
+        providerInfo.id,
+        {
+          callbackUrl: '/',
+        },
+        { prompt: 'login' }
+      );
+      if (response?.error) {
+        router.push(`?${new URLSearchParams({ error: response.error })}`);
+      }
     };
 
     return (

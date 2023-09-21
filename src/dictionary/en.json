@@ -13,6 +13,7 @@
   },
   "components": {
     "navBar": {
+      "signInBtn": "Sign In",
       "signOutBtn": "Sign Out"
     }
   },

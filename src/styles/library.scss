@@ -1,5 +1,3 @@
-@import './variables.scss';
-
 @mixin absolute-center($offsetX: 0px, $offsetY: 0px) {
   position: absolute;
   top: 50%;

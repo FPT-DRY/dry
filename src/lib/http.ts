@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 import { HttpClientError, HttpMethod, HttpServerError } from 'api';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const PAGINATION = {
@@ -9,21 +9,22 @@ export const PAGINATION = {
 
 type HttpConfig<D> = Omit<AxiosRequestConfig<D>, 'url' | 'method'>;
 
+const axiosInstance = axios.create({
+  baseURL: process.env.DOMAIN_URL || 'http://localhost:3000',
+});
+
 export const http = (method: HttpMethod) => {
-  function fetch<T = any, D = any>(
+  return function fetch<T = any, D = any>(
     url: string,
     config?: HttpConfig<D>
   ): Promise<T> {
-    return axios({
+    return axiosInstance<T, AxiosResponse<T, any>, D>({
       method,
       url,
       ...config,
     })
       .then((response) => response.data)
       .catch((error) => Promise.reject(error));
-  }
-  return {
-    fetch,
   };
 };
 

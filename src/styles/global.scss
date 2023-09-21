@@ -1,4 +1,4 @@
-@import '@stylesheets/lib/library';
+@import '@stylesheets/library';
 @import 'react-tooltip/dist/react-tooltip.css';
 @import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,4 +47,8 @@ button {
   &:hover {
     color: theme('colors.white');
   }
+}
+
+body {
+  background-color: theme('colors.black.50');
 }

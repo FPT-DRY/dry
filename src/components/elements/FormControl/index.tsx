@@ -1,7 +1,7 @@
 import { ConnectForm } from '@components/elements/Form';
 import classNames from 'classnames/bind';
-import { isEmpty, uniqueId } from 'lodash';
-import { memo, useMemo, useRef } from 'react';
+import { isEmpty } from 'lodash';
+import { memo, useRef } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Tooltip } from 'react-tooltip';
 import { CSSTransition } from 'react-transition-group';
@@ -41,14 +41,8 @@ const InputControl = memo(
   }: InputControlProps) => {
     const ref = useRef<HTMLDivElement | null>(null);
 
-    const generatedLabelId = useMemo(
-      () => uniqueId('label-id_' + name + '_'),
-      [name]
-    );
-    const generatedInputId = useMemo(
-      () => uniqueId('input-id_' + name + '_'),
-      [name]
-    );
+    const generatedLabelId = 'label_' + name;
+    const generatedInputId = 'input_' + name;
     const error = formContext?.formState?.errors[name];
 
     return (
@@ -69,6 +63,7 @@ const InputControl = memo(
         <div
           ref={ref}
           className={cx('root', {
+            standard: variant === 'standard',
             outline: variant === 'outline',
           })}
         >

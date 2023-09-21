@@ -14,12 +14,20 @@ const authOptions: AuthOptions = {
   pages: {
     signIn: '/sign-in',
     signOut: '/sign-out',
+    error: '/sign-in',
   },
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'jwt', // rely on jwt expire time or session record in database
+    strategy: 'jwt',
   },
   callbacks: {
+    jwt({ token, account, user }) {
+      if (account) {
+        token.id = user.id;
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
     /* define callback options here */
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs

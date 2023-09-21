@@ -3,10 +3,14 @@ module.exports = {
   content: ['./src/{app,components}/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      variables: {
+        'header-height': '50px',
+      },
       colors: {
         black: {
           0: '#000',
           25: '#0d1117',
+          35: '#0f0f0f',
           50: '#161b22;',
         },
         gray: {

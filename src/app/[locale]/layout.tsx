@@ -1,18 +1,19 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
-
 import Providers from '@components/providers';
+import { Session } from 'next-auth';
+import { notFound } from 'next/navigation';
+import React from 'react';
 
 import '@stylesheets/global.scss';
 
 type LayoutProps = {
-  children: React.ReactNode;
   params: {
     locale: string;
+    session: Session;
   };
+  children: React.ReactNode;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'vi' }];
 }
 

@@ -67,7 +67,10 @@ function SignUp() {
         .required(messages('name.required.last')),
       email: yup
         .string()
-        .email(messages('email.pattern'))
+        .matches(
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+          messages('email.pattern')
+        )
         .required(messages('email.required')),
     })
     .required();

@@ -1,13 +1,13 @@
 
-import createMiddleware from 'next-intl/middleware';
+import nextIntlMiddleware from 'next-intl/middleware';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from './constants/locales';
 
-const nextIntlMiddleware = createMiddleware({
+const middleware = nextIntlMiddleware({
   locales: SUPPORTED_LOCALES as unknown as string[],
   defaultLocale: DEFAULT_LOCALE,
 });
 
-export default nextIntlMiddleware;
+export default middleware;
 
 export const config = {
   // Skip all paths that should not be internationalized. This example skips the

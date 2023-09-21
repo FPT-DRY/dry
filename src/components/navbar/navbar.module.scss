@@ -1,13 +1,15 @@
-@import '@stylesheets/lib/library';
-
 .root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  height: 50px;
-  background-color: $navbar-bg-color;
-  color: $navbar-text-color;
+  height: theme('variables.header-height');
+  background-color: theme('colors.black.35');
+  color: theme('colors.white');
 
   & > *:first-child {
     margin-left: 10px;
@@ -36,7 +38,7 @@
   .user-info {
     width: 200px;
     padding: 0 5px;
-    text-align: center;
+    text-align: left;
 
     & > * {
       overflow: hidden;
