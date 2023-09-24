@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 
+export type SearchParams = {
+  [key: string]: string | string[] | undefined;
+};
+
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 type HttpClientErrorStatus =

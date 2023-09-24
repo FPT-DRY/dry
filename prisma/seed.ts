@@ -30,6 +30,23 @@ async function main() {
       image: null,
     },
   });
+
+  await prisma.category.createMany({
+    skipDuplicates: true,
+    data: [
+      { name: 'Action' },
+      { name: 'Adventure' },
+      { name: 'Comedy' },
+      { name: 'Drama' },
+      { name: 'Fantasy' },
+      { name: 'Horror' },
+      { name: 'Historical' },
+      { name: 'Mistery' },
+      { name: 'Shounen' },
+      { name: 'Shoujo' },
+      { name: 'Romantic' },
+    ],
+  });
 }
 
 main()

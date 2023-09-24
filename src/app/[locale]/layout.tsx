@@ -3,6 +3,7 @@ import { Session } from 'next-auth';
 import { notFound } from 'next/navigation';
 import React from 'react';
 
+import NavBar from '@components/navbar';
 import '@stylesheets/global.scss';
 
 type LayoutProps = {
@@ -29,7 +30,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <body>
       <Providers nextIntlParams={{ locale: params.locale, messages }}>
-        {children}
+        <>
+          <NavBar />
+          <main>{children}</main>
+        </>
       </Providers>
     </body>
   );

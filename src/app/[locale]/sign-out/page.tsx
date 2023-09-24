@@ -1,7 +1,7 @@
 'use client';
 
+import useSession from '@features/authentication/hooks/useSession';
 import useRedirectAfterTime from '@hooks/useRedirectAfterTime';
-import useSession from '@hooks/useSession';
 import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { redirect } from 'next/navigation';
@@ -13,10 +13,10 @@ function SignOut({}: Props) {
   const translate = useTranslations('pages.auth.signOut');
   const seconds = useRedirectAfterTime({ redirectTo: '/' });
 
-  if (session?.user) {
-    signOut({ redirect: false });
-  } else {
+  if (!session?.user) {
     redirect('/');
+  } else if (seconds === 0) {
+    signOut({ redirect: false });
   }
 
   return (

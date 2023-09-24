@@ -1,17 +1,19 @@
-import { passwordSalt } from '@lib/auth';
+import { passwordSalt } from '@features/authentication/lib';
+import {
+  UserResponse,
+  UserUpsertRequest,
+} from '@features/authentication/model/user';
 import { ModelVaidation } from '@lib/helper';
-import { PAGINATION, apiHandler } from '@lib/http';
+import { apiHandler } from '@lib/http';
 import prisma from '@lib/prisma';
 import { hash } from 'bcryptjs';
-import { UserResponse, UserUpsertRequest } from 'model/user';
 import { NextRequest, NextResponse } from 'next/server';
 
 async function findUsers(req: NextRequest) {
   const { searchParams } = new URL(req.url);
 
   const pageNumber = Number(searchParams.get('page')) || 0;
-  const pageSize =
-    Number(searchParams.get('limit')) || PAGINATION.DEFAULT_PAGE_SIZE;
+  const pageSize = Number(searchParams.get('limit')) || 10;
 
   const users = await prisma.user.findMany({
     take: pageSize,

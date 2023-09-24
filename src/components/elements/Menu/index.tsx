@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames/bind';
 import React, {
   JSXElementConstructor,
@@ -16,9 +18,9 @@ type ClickableElementProps = React.HTMLProps<HTMLElement> & {
 
 interface MenuProps extends React.HTMLProps<HTMLDivElement> {
   classes?: {
-    menuClassName: string;
-    menuListClassName: string;
-    menuItemClassName: string;
+    menuClassName?: string;
+    menuListClassName?: string;
+    menuItemClassName?: string;
   };
   position?: 'left' | 'right';
   hover?: boolean;
@@ -72,7 +74,7 @@ function Menu({
       return React.cloneElement(anchor, props);
     }
     return anchor;
-  }
+  };
   return (
     <div
       ref={menuRef}
@@ -89,7 +91,7 @@ function Menu({
         })}
       >
         {items.map((item, idx) => {
-          const elementType = item.type as JSXElementConstructor<any>;          
+          const elementType = item.type as JSXElementConstructor<any>;
           return elementType.name === 'Divider' ? (
             item
           ) : (

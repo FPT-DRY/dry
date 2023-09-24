@@ -1,11 +1,14 @@
-import NavBar from '@components/navbar';
+import DynamicViewLayout from '@features/view/components/layout';
+import { SearchParams } from 'api';
 
-export default function Index() {
+type Props = {
+  searchParams: SearchParams;
+};
+
+export default function Index({ searchParams }: Props) {
   return (
     <>
-      <NavBar />
-      <main>
-      </main>
+      <DynamicViewLayout fullSize searchParams={searchParams} />
     </>
   );
 }

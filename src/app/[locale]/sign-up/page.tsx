@@ -4,11 +4,14 @@ import Button from '@components/elements/Button';
 import Form from '@components/elements/Form';
 import FormControl from '@components/elements/FormControl';
 import AuthLayout from '@features/authentication/layout';
+import {
+  UserResponse,
+  UserUpsertRequest,
+} from '@features/authentication/model/user';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useApi } from '@hooks/useApi';
 import classNames from 'classnames/bind';
 import { entries, isEmpty } from 'lodash';
-import { UserResponse, UserUpsertRequest } from 'model/user';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import * as yup from 'yup';

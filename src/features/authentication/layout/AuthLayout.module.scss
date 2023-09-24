@@ -6,6 +6,11 @@
     min-width: 300px;
     max-width: 400px;
     width: 90%;
+
+    &.lg {
+      min-width: 600px;
+      max-width: 800px;
+    }
   }
 
   form {

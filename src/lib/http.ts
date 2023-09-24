@@ -3,10 +3,6 @@ import { HttpClientError, HttpMethod, HttpServerError } from 'api';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const PAGINATION = {
-  DEFAULT_PAGE_SIZE: 10,
-};
-
 type HttpConfig<D> = Omit<AxiosRequestConfig<D>, 'url' | 'method'>;
 
 const axiosInstance = axios.create({

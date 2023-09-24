@@ -1,7 +1,9 @@
 'use client';
 
 import Button, { ButtonProps } from '@components/elements/Button';
-import useOAuth2Provider, { ProviderData } from '@hooks/useOAuthProvider';
+import useOAuth2Provider, {
+  ProviderData,
+} from '@features/authentication/hooks/useOAuthProvider';
 import classNames from 'classnames/bind';
 import { signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';

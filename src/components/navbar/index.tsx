@@ -4,7 +4,7 @@ import Button from '@components/elements/Button';
 import Divider from '@components/elements/Divider';
 import Menu from '@components/elements/Menu';
 import UserInfo from '@components/navbar/UserInfo';
-import useSession from '@hooks/useSession';
+import useSession from '@features/authentication/hooks/useSession';
 import { default as defaultUser } from '@icons/user-default-64.png';
 import classNames from 'classnames/bind';
 import { capitalize, isEmpty } from 'lodash';
@@ -44,7 +44,7 @@ function NavBar({}: Props) {
           ) : (
             <>
               <Menu
-                // hover
+                hover
                 position='right'
                 anchor={
                   <Image

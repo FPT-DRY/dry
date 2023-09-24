@@ -7,13 +7,20 @@ import styles from './AuthLayout.module.scss';
 const cx = classNames.bind(styles);
 
 type Props = {
+  size?: 'md' | 'lg';
   children: React.ReactNode;
 };
 
-function AuthLayout({ children }: Props) {
+function AuthLayout({ size, children }: Props) {
   return (
     <div className={cx('root')}>
-      <div className={cx('container', 'absolute-center')}>{children}</div>
+      <div
+        className={cx('container', 'absolute-center', {
+          lg: size === 'lg',
+        })}
+      >
+        {children}
+      </div>
       <Toast
         className={cx('toast')}
         position='top-center'

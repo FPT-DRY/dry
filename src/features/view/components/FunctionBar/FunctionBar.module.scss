@@ -1,0 +1,77 @@
+@mixin activavteStyle {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: theme('colors.slate.300');
+  border-radius: 3px;
+}
+
+.root {
+  display: flex;
+  align-items: center;
+  margin: {
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+  };
+}
+
+.list {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .category-menu {
+    ul {
+      background-color: #999;
+      min-width: 200px;
+    }
+
+    li {
+      &:hover {
+        background-color: red;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .selector {
+    color: theme('colors.slate.500');
+
+    &:active {
+      color: theme('colors.slate.100');
+    }
+
+    &.active {
+      @include activavteStyle();
+    }
+  }
+
+  .title {
+    color: theme('colors.white');
+    font-weight: bold;
+  }
+}
+
+
+
+.modes {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .mode-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: theme('colors.slate.500');
+    width: 36px;
+    height: 36px;
+  
+    &.active {
+      @include activavteStyle();
+    }
+  }
+}
+
