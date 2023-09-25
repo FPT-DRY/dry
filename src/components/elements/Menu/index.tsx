@@ -70,7 +70,9 @@ function Menu({
       const childProps = anchor.props as ClickableElementProps;
       const props: ClickableElementProps = {
         ...childProps,
-        className: cx(childProps.className, 'cursor-pointer'),
+        className: cx(childProps.className, 'cursor-pointer', {
+          active: show,
+        }),
         onClick: !hover ? inboundOnClickHandler : undefined,
       };
       return React.cloneElement(anchor, props);
@@ -84,6 +86,7 @@ function Menu({
       {...componentProps}
     >
       {getMappedPropsAnchor()}
+      {hover && <div className={cx('hoverable-space')} />}
       <ul
         ref={listRef}
         className={cx(
@@ -105,6 +108,7 @@ function Menu({
             <li
               key={idx}
               className={cx('menu-item', classes?.menuItemClassName)}
+              onClick={inboundOnClickHandler}
             >
               {item}
             </li>

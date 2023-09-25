@@ -1,5 +1,5 @@
-import { LayoutMode } from '@features/view/components/layout';
-import { CategoryResponse } from '@features/view/model/Categories';
+import { LayoutMode } from '@features/home/components/layout';
+import { CategoryResponse } from '@features/home/model/Categories';
 import classNames from 'classnames/bind';
 import { isNumber } from 'lodash';
 import Link from 'next/link';
@@ -14,14 +14,14 @@ const cx = classNames.bind(styles);
 
 type Props = {
   categoryList: CategoryResponse[];
-  title: string;
+  title?: string;
   mode: LayoutMode;
   page: string;
 };
 
-export default async function FunctionBar({
+export default function FunctionBar({
   categoryList,
-  title,
+  title = 'All Categories',
   mode,
   page,
 }: Props) {

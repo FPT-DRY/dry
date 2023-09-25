@@ -1,9 +1,3 @@
-@mixin activavteStyle {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: theme('colors.slate.300');
-  border-radius: 3px;
-}
-
 .root {
   display: flex;
   align-items: center;
@@ -44,17 +38,19 @@
     color: theme('colors.slate.500');
 
     &:active {
-      color: theme('colors.slate.100');
+      color: theme('colors.rose.200');
     }
 
-    &.active {
-      @include activavteStyle();
+    &:global(.active) {
+      color: theme('colors.rose.400');
     }
   }
 
   .title {
     color: theme('colors.white');
     font-weight: bold;
+    user-select: text;
+    cursor: default;
   }
 }
 
@@ -75,7 +71,9 @@
     height: 36px;
   
     &.active {
-      @include activavteStyle();
+      background-color: rgba(255, 255, 255, 0.25);
+      color: theme('colors.slate.300');
+      border-radius: 3px;
     }
   }
 }

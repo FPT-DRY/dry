@@ -9,6 +9,9 @@
         "abbreviation": "E",
         "name": "English"
       }
+    },
+    "category": {
+      "default": "All Categories"
     }
   },
   "components": {

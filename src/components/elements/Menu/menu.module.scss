@@ -11,10 +11,13 @@
   grid-auto-columns: minmax(120px, auto);
 }
 
+$distance: 10px;
+
 .root {
   position: relative;
 
   &.hover:hover .menu-list {
+    margin-top: 0;
     &.flex {
       @include flex-visible-menu;
     }
@@ -23,11 +26,15 @@
       @include grid-visible-menu;
     }
   }
-  
+}
+
+.hoverable-space {
+  width: 100%;
+  height: $distance;
+  background-color: transparent;
 }
 
 .menu-list {
-  $distance: 10px;
   position: absolute;
   display: none;
   overflow: hidden;
@@ -45,17 +52,6 @@
   border-radius: 5px;
   box-shadow: 1px 1.5px 3px 1px #7d7d7d;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -$distance;
-    left: 0;
-    right: 0;
-    height: $distance;
-    pointer-events: auto;
-    background: transparent;
-  }
-
   &.position-left {
     left: 0;
   }
@@ -71,10 +67,13 @@
   &.grid.visible {
     @include grid-visible-menu;
   }
+
+  .menu-item {
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+  }
+  
 }
 
-.menu-item {
-  margin: 0;
-  padding: 5px;
-  width: 100%;
-}
+

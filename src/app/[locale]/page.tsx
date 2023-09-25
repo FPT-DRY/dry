@@ -1,4 +1,4 @@
-import DynamicViewLayout from '@features/view/components/layout';
+import HomeLayout from '@features/home/components/layout';
 import { SearchParams } from 'api';
 
 type Props = {
@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default function Index({ searchParams }: Props) {
-  return <DynamicViewLayout fullSize searchParams={searchParams} />;
+  return <HomeLayout fullSize searchParams={searchParams} />;
 }
