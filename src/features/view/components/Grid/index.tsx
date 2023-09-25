@@ -1,6 +1,7 @@
 import cx from 'classnames';
 
 type Props = {
+  template?: 'cols' | 'rows';
   sm?: number;
   md?: number;
   lg?: number;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export default function Grid({
+  template = 'cols',
   sm = 2,
   md = 3,
   lg = 3,
@@ -19,12 +21,11 @@ export default function Grid({
   rounded = true,
   children,
 }: Props) {
-  const className = cx('grid', 'grid-cols-1', {
-    [`sm:grid-cols-${sm}`]: true,
-    [`md:grid-cols-${md}`]: true,
-    [`lg:grid-cols-${lg}`]: true,
-    [`xl:grid-cols-${xl}`]: true,
-    [`gap-${gap}`]: true,
+  const buildTemplateClasses = () => {
+    return `grid-${template}-1 sm:grid-${template}-${sm} md:grid-${template}-${md} lg:grid-${template}-${lg} xl:grid-${template}-${xl} gap-${gap}`;
+  };
+
+  const className = cx('grid', buildTemplateClasses(), {
     'rounded-md': rounded,
   });
 
