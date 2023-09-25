@@ -1,0 +1,61 @@
+@import '@stylesheets/library';
+@import 'react-tooltip/dist/react-tooltip.css';
+@import 'react-toastify/dist/ReactToastify.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-icons {
+  display: inline-block;
+  vertical-align: text-bottom;
+
+  & + span,
+  span + & {
+    margin-left: 5px;
+  }
+}
+
+@layer components {
+  .absolute-center {
+    @include absolute-center();
+  }
+
+  .card {
+    display: block;
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.2xl');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+}
+
+input {
+  outline: none;
+}
+
+button {
+  &:disabled {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.link {
+  color: #ccc;
+
+  &:hover {
+    color: theme('colors.white');
+  }
+}
+
+body {
+  background-color: theme('colors.black.50');
+}
+
+main {
+  $header-height: theme('variables.header-height');
+  margin-top: $header-height;
+  padding: 10px;
+  min-height: calc(100vh - $header-height);
+}

@@ -1,0 +1,26 @@
+.sign-in-btn {
+  background-color: theme('colors.black.50');
+  color: #ccc;
+
+  &:hover {
+    color: theme('colors.white');
+  }
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #444;
+  display: block;
+  margin: 2rem auto 1rem;
+  text-align: center;
+  overflow: visible;
+
+  &::before {
+    background-color: theme('colors.black.25');
+    color: #888;
+    content: 'or';
+    padding: 0 0.4rem;
+    position: relative;
+    top: -0.8rem;
+  }
+}

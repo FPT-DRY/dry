@@ -1,0 +1,19 @@
+.title {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sign-up-btn {
+  background-color: theme('colors.green.500');
+  color: theme('colors.white');
+  font-weight: bold;
+
+  &:disabled {
+    background-color: theme('colors.gray.500');
+    color: #ccc;
+    pointer-events: none;
+    user-select: none;
+  }
+}

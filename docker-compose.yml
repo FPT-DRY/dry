@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: postgresql
+    image: postgres:15.4
+    restart: always
+    ports:
+      - "${DATABASE_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PWD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    volumes:
+      - ./volumes/postgresql/:/var/lib/postgresql/data
+  adminer:
+    container_name: database-managemetn
+    image: adminer
+    restart: always
+    ports:
+      - "9000:8080"

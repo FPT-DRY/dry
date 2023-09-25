@@ -5,6 +5,7 @@ import {
   NextIntlClientProvider as IntlProvider,
 } from 'next-intl';
 import React from 'react';
+import { IconContext } from 'react-icons';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '~/redux/store';
 
@@ -23,7 +24,13 @@ export default function Providers({ nextIntlParams, children }: Props) {
         locale={nextIntlParams.locale}
         messages={nextIntlParams.messages}
       >
-        {children}
+        <IconContext.Provider
+          value={{
+            className: 'react-icons',
+          }}
+        >
+          {children}
+        </IconContext.Provider>
       </IntlProvider>
     </ReduxProvider>
   );

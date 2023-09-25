@@ -1,0 +1,61 @@
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: theme('variables.header-height');
+  background-color: theme('colors.black.35');
+  color: theme('colors.white');
+
+  & > *:first-child {
+    margin-left: 10px;
+  }
+
+  & > *:last-child {
+    margin-right: 10px;
+  }
+
+  .logo {
+    display: block;
+    width: 75px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: dimgrey;
+  }
+
+  .auth-container {
+    margin-left: auto;
+
+    & > div {
+      margin: 5px 0px;
+    }
+  }
+
+  .user-info {
+    width: 200px;
+    padding: 0 5px;
+    text-align: left;
+
+    & > p, span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+
+    .text-username {
+      display: block;
+      color: red;
+      font-weight: bold;
+    }
+
+    .text-email {
+      display: block;
+      color: black;
+    }
+  }
+}

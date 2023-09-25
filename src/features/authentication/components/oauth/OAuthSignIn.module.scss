@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .text {
+    flex-grow: 1;
+  }
+
+  & + .root {
+    margin-top: 10px;
+  }
+}
+
+.github {
+  background-color: theme('colors.black.0');
+}
+
+.google {
+  background-color: theme('colors.white');
+  color: theme('colors.black.0');
+}
