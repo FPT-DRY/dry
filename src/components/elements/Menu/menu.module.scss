@@ -17,7 +17,6 @@ $distance: 10px;
   position: relative;
 
   &.hover:hover .menu-list {
-    margin-top: 0;
     &.flex {
       @include flex-visible-menu;
     }
@@ -25,6 +24,10 @@ $distance: 10px;
     &.grid {
       @include grid-visible-menu;
     }
+  }
+
+  &.hover .menu-list {
+    margin-top: 0;
   }
 }
 
@@ -73,7 +76,4 @@ $distance: 10px;
     padding: 5px;
     width: 100%;
   }
-  
 }
-
-
