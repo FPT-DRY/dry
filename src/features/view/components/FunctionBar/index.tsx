@@ -38,9 +38,10 @@ export default async function FunctionBar({
     <div className={cx('root')}>
       <div className={cx('list')}>
         <Menu
+          menuType='grid'
           classes={{
             menuClassName: cx('category-menu'),
-            menuListClassName: 'grid grid-rows-4',
+            menuListClassName: 'grid-rows-4 grid-flow-col gap-y-1',
           }}
           anchor={<FaThList className={cx('selector')} size={24} />}
           items={categoryList.map((category) => (

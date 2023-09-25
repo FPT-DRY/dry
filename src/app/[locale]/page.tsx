@@ -6,9 +6,5 @@ type Props = {
 };
 
 export default function Index({ searchParams }: Props) {
-  return (
-    <>
-      <DynamicViewLayout fullSize searchParams={searchParams} />
-    </>
-  );
+  return <DynamicViewLayout fullSize searchParams={searchParams} />;
 }

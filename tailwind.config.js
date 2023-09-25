@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/{app,components}/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/{app,components}/**/*.{js,jsx,ts,tsx}',
+    './src/features/**/{components,layout}/**/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     extend: {
       variables: {
@@ -12,6 +15,7 @@ module.exports = {
           25: '#0d1117',
           35: '#0f0f0f',
           50: '#161b22;',
+          75: '#1616169f',
         },
         gray: {
           opacity: {

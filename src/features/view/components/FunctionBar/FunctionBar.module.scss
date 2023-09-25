@@ -22,14 +22,19 @@
 
   .category-menu {
     ul {
-      background-color: #999;
-      min-width: 200px;
+      background-color: theme('colors.black.75');
+      box-shadow: none;
     }
 
     li {
+      text-indent: 20px;
+      color: theme('colors.gray.200');
+
       &:hover {
-        background-color: red;
+        background-color: theme('colors.zinc.700');
+        color: theme('colors.gray.200');
         font-weight: bold;
+        border-radius: 2.5px;
         cursor: pointer;
       }
     }

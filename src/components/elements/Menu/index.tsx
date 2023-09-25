@@ -24,6 +24,7 @@ interface MenuProps extends React.HTMLProps<HTMLDivElement> {
   };
   position?: 'left' | 'right';
   hover?: boolean;
+  menuType?: 'flex' | 'grid';
   anchor: React.ReactElement;
   items: React.ReactElement[];
 }
@@ -32,6 +33,7 @@ function Menu({
   classes,
   position,
   hover,
+  menuType = 'flex',
   anchor,
   items,
   ...componentProps
@@ -84,11 +86,16 @@ function Menu({
       {getMappedPropsAnchor()}
       <ul
         ref={listRef}
-        className={cx('menu-list', classes?.menuListClassName, {
-          visible: show,
-          'position-left': position === 'left',
-          'position-right': position === 'right',
-        })}
+        className={cx(
+          'menu-list',
+          {
+            [menuType]: true,
+            visible: show,
+            'position-left': position === 'left',
+            'position-right': position === 'right',
+          },
+          classes?.menuListClassName
+        )}
       >
         {items.map((item, idx) => {
           const elementType = item.type as JSXElementConstructor<any>;

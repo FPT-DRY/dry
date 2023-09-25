@@ -18,8 +18,8 @@ export default async function DynamicViewLayout({
 }: Props) {
   const mode = (searchParams?.mode as LayoutMode) || 'grid';
   const page = (searchParams.page as string) || '1';
-  const videos = new Array(12);
   const categories = await CategoryService.getCategories();
+  const videos = new Array(12);
 
   const Layout = mode === 'grid' ? Grid : 'div';
 
@@ -35,13 +35,11 @@ export default async function DynamicViewLayout({
         mode={mode}
         page={page}
       />
-      {mode === 'grid' && (
-        <Layout>
-          {videos.fill(0).map((video, idx) => (
-            <Previewer key={idx} />
-          ))}
-        </Layout>
-      )}
+      <Layout>
+        {videos.fill(0).map((video, idx) => (
+          <Previewer key={idx} />
+        ))}
+      </Layout>
     </div>
   );
 }
